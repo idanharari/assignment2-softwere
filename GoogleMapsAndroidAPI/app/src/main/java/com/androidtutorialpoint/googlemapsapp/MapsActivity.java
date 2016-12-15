@@ -1,6 +1,7 @@
 package com.androidtutorialpoint.googlemapsapp;
 
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -11,6 +12,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -43,6 +46,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Location mLastLocation;
     private Marker mCurrLocationMarker;
     private boolean counterChangedLocation=true;
+    ImageButton bleBtn;
+    ImageButton qrBtn;
 
 
 
@@ -61,6 +66,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMapLongClickListener(this);
         mMap.setOnMapClickListener(this);
         mMap.setOnInfoWindowClickListener( this );
+        qrBtn = (ImageButton)findViewById(R.id.qr_icon);
+        qrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToQr = new Intent(MapsActivity.this, QRActivity.class);
+                startActivity(goToQr);
+            }
+        });
     }
 
     /**

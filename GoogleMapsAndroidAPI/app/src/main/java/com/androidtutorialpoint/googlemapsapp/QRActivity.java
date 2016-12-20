@@ -2,6 +2,7 @@ package com.androidtutorialpoint.googlemapsapp;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -123,6 +124,11 @@ public class QRActivity extends AppCompatActivity {
                                 break;
                             case Barcode.GEO:
                                 Log.i(LOG_TAG, code.geoPoint.lat + ":" + code.geoPoint.lng);
+                                System.out.print(code.geoPoint);
+                                Intent returnIntent = new Intent();
+                                returnIntent.putExtra("result",code.geoPoint);
+                                setResult(Activity.RESULT_OK,returnIntent);
+                                finish();
                                 break;
                             case Barcode.CALENDAR_EVENT:
                                 Log.i(LOG_TAG, code.calendarEvent.description);
@@ -132,6 +138,7 @@ public class QRActivity extends AppCompatActivity {
                                 break;
                             case Barcode.QR_CODE:
                                 Log.i(LOG_TAG, code.url.url);
+                                break;
                             default:
                                 Log.i(LOG_TAG, code.rawValue);
                                 break;
